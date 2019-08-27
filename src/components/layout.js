@@ -20,14 +20,14 @@ const Content = styled.div`
   padding-top: 0;
 `
 
-const GatsbyLink = styled.a`
-  margin-left: 5px;
-`
+// const GatsbyLink = styled.a`
+//   margin-left: 5px;
+// `
 
-const Footer = styled.footer`
-  display: flex;
-  justify-content: center;
-`
+// const Footer = styled.footer`
+//   display: flex;
+//   justify-content: center;
+// `
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -45,11 +45,11 @@ const Layout = ({ children }) => (
         <Header siteTitle={data.site.siteMetadata.title} />
         <Content>
           <main>{children}</main>
-          <Footer>
+          {/* <Footer>
             © {new Date().getFullYear()}, Built with
             {` `}
             <GatsbyLink href="https://www.gatsbyjs.org">Gatsby</GatsbyLink>
-          </Footer>
+          </Footer> */}
         </Content>
       </>
     )}
