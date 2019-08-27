@@ -1,11 +1,11 @@
 ---
-title: "Create Modern NavBar"
+title: "Modern NavBar"
 date: "2019-08-17"
 draft: false
-path: "/blog/create-modern-navbar"
+path: "/blog/modern-navbar"
 ---
 
-### This navbar provides some featues which are cover whole page and responsive design.
+### This navbar provides some features which are covering whole page and responsive design.
 
 ---
 

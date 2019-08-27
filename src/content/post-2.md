@@ -1,8 +1,32 @@
 ---
-title: "Second Title"
-date: "2019-03-18"
+title: "Website & Shopping Mall"
+date: "2019-08-23"
 draft: false
-path: "/blog/second-title"
+path: "/blog/website-shopping-mall"
 ---
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+### Create website & shopping mall based on customer needs.
+
+> Used Content Management System (Wordpress & Shopify)
+
+---
+
+### Website
+
+[Pilates](https://hazel-pilates.com)
+
+[Electric](https://ptechelectric.com)
+
+[Health-Food](https://herba-health.com)
+
+[Taxi](https://toronto-taxi.com)
+
+---
+
+### Shopping Mall
+
+[Health-Food-1](https://nutra-mart.com)
+
+[Health-Food-2](https://lotte-shopping.com)
+
+[Health-Food-3](https://purenatures.ca)

@@ -1,32 +1,78 @@
 ---
-title: "abcdefghijk"
-date: "2019-06-06"
+title: "Algorithm Practice"
+date: "2019-08-26"
 draft: false
-path: "/blog/abcdefghijk"
+path: "/blog/algorithm-practice"
 ---
 
-## An Code example with PrismJS
-Gatsby-Starter-Julia uses the Atom Editor Theme.
-
+#### Reverse Sentence
 ```js
-console.log("Hello World");
 ```
 
-## Default NodeJS server
+---
 
+#### Check the number of words
 ```js
-const http = require('http');
-
-const hostname = '127.0.0.1';
-const port = 3000;
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World\n');
-});
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
 ```
+
+---
+
+#### Change second character as UpperCase
+```js
+```
+
+---
+
+#### Change the property of object
+```js
+```
+
+---
+
+#### Multiply 2 in array (value should be larger than 0)
+```js
+```
+
+---
+
+#### Factorial
+```js
+```
+
+---
+
+#### Find the longest word in sentence
+```js
+```
+
+---
+
+#### Maximum and Minimum Value
+```js
+```
+
+---
+
+#### Repeated Value
+```js
+```
+
+---
+
+#### String Rotation
+```js
+```
+
+---
+
+#### String Left Rotation
+```js
+```
+
+---
+
+#### Put new value into odd index
+```js
+```
+
+---
