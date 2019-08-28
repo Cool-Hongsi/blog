@@ -5,8 +5,17 @@ draft: false
 path: "/blog/redux"
 ---
 
-### Redux is a predictable state container for JavaScript apps.
-> It helps writing applications that behave consistently, run in different environments (client, server, and native), and are easy to test.
+### Redux is State Management Library.
+- Easily have access to state and modify the value of state without passing other components by using reducer in store.
+- Redux Alternative : React Context API
+- Reducer : Generate new state by using action parameter with logic.
+- Generate New State : var newState = Object.assign({}, state, {color:action.color}); or spread operator (not directly modify)
+- Retrieve the state value : getState();
+- Store : The space including state, reducer, dispatch, subscribe ... 
+- Dispatch : implement action (dispatch parameter will go to action parameter in reducer)
+- Subscribe : call the function after implemting dispatch (parameter should be function)
+- Redux Middleware : Provide some features like logging, reporting error, asynchronous (Redux Thunk, Redux Saga)
+
 ---
 
 #### Vanila Javascript Redux tutorial
