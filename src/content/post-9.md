@@ -211,14 +211,14 @@ path: "/blog/redux"
 #### ReactJS Redux tutorial (Comming Soon !)
 
 ##### 3 rules
-> There is one store in one application.
-> Keep state immutable
-> The function that causes the change, the reducer, must be a pure function.
+- There is one store in one application.
+- Keep state immutable
+- The function that causes the change, the reducer, must be a pure function.
 
 ##### Required Modules
-> redux
-> react-redux
-> redux-actions (Not necessarily)
+- redux
+- react-redux
+- redux-actions (Not necessarily)
 
 ```js
 
