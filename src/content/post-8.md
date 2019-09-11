@@ -1,6 +1,6 @@
 ---
 title: "Jest & Enzyme"
-date: "2019-08-27"
+date: "2019-09-08"
 draft: false
 path: "/blog/jest-enzyme"
 ---
@@ -9,17 +9,29 @@ path: "/blog/jest-enzyme"
 
 ---
 
+[Jest Testing Application Github](https://github.com/Cool-Hongsi/testing)
+
+---
+
 #### Dependencies
 ```js
   "dependencies": {
+    "axios": "^0.19.0",
     "check-prop-types": "^1.1.2",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
+    "jest": "^24.8.0",
+    "jest-enzyme": "^7.0.2",
+    "moxios": "^0.4.0",
     "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-scripts": "3.1.1"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.0.0-beta.0",
+    "react-scripts": "3.0.1",
+    "react-test-renderer": "^16.9.0",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0"
   },
 ```
 ---
@@ -33,12 +45,38 @@ configure({ adapter: new Adapter() });
 ```
 ---
 
+#### index.js
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.scss';
+import App from './App';
+
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './reducers/index';
+import { Provider } from 'react-redux';
+import ReduxThunk from 'redux-thunk';
+
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
+
+ReactDOM.render(
+<Provider store={store}>
+    <App />
+</Provider>, document.getElementById('root'));
+```
+---
+
 #### App.js
 ```js
 import React from 'react';
-import './App.scss';
+import './app.scss';
 
-import Header from './component/Header';
+import Header from './component/header/index';
+import Headline from './component/headline/index';
+import SharedButton from './component/button';
+import ListItem from './component/listItem';
+import { connect } from 'react-redux';
+import { fetchPosts } from './actions';
 
 const tempArr = [
   {
@@ -50,15 +88,109 @@ const tempArr = [
   }
 ];
 
-export default class App extends React.Component{
+class App extends React.Component{
+
+  constructor(props){
+    super(props);
+
+    this.fetch = this.fetch.bind(this);
+  }
+
+  fetch(){
+    this.props.fetchPosts();
+  }
+
   render(){
+
+    const { posts } = this.props;
+
+    const configButton = {
+      buttonText : 'Get Posts',
+      emitEvent : this.fetch
+    }
+
     return(
-      <div>
-        <Header header="This is Header" desc="Hello" tempArr={tempArr} />
+      <div data-test="appComponent">
+        <Header />
+        <section className="main">
+          <Headline header="Posts" desc="Click the button to render posts" tempArr={tempArr} />
+          <SharedButton {...configButton} />
+          {posts.length > 0 &&
+            <div>
+              {posts.map((post, index) => {
+                const { title, body } = post;
+                const configListItem = {
+                  title,
+                  desc : body
+                };
+                return(
+                  <ListItem key={index} {...configListItem} />
+                )
+              })}
+            </div>
+          }
+        </section>
       </div>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    posts : state.posts
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  {fetchPosts}
+)(App);
+```
+---
+
+#### App.test.js
+```js
+import App from './App';
+import { shallow } from 'enzyme';
+import { findByTestAttr, testStore } from './../Utils/index';
+import React from 'react';
+
+const setUp = (initialState={}) => {
+    const store = testStore(initialState);
+    const wrapper = shallow(<App store={store} />).childAt(0).dive();
+    return wrapper;
+};
+
+describe('App Component', () => {
+
+    let wrapper;
+    beforeEach(() => {
+        const initialState = {
+            posts : [
+                {
+                    title : 'Example Title 1',
+                    body : 'Some Text'
+                },
+                {
+                    title : 'Example Title 2',
+                    body : 'Some Text'
+                },
+                {
+                    title : 'Example Title 3',
+                    body : 'Some Text'
+                }
+            ]
+        }
+
+        wrapper = setUp(initialState);
+    });
+
+    it('Should render without errors', () => {
+        const component = findByTestAttr(wrapper, "appComponent");
+        expect(component.length).toBe(1);
+    });
+
+});
 ```
 ---
 
@@ -203,3 +335,56 @@ export const findByTestAttr = (component, attr) => {
     return wrapper;
 };
 ```
+
+---
+#### integration.test.js
+```js
+import moxios from 'moxios';
+import { testStore } from '../../Utils/index';
+import { fetchPosts } from '../actions';
+
+describe('fetchPosts action', () => {
+
+    beforeEach(() => {
+        moxios.install();
+    });
+
+    afterEach(() => {
+        moxios.uninstall();
+    });
+
+    test('Store is updated correctly', () => {
+        const expectedState = [
+            {
+                title : 'Example title 1',
+                body : 'Some text'
+            },
+            {
+                title : 'Example title 2',
+                body : 'Some text'
+            },
+            {
+                title : 'Example title 3',
+                body : 'Some text'
+            }
+        ];
+
+        const store = testStore();
+        moxios.wait(() => {
+            const request = moxios.requests.mostRecent();
+            request.respondWith({
+                status : 200,
+                response : expectedState
+            })
+        });
+
+        return store.dispatch(fetchPosts()).then(() => {
+            const newState = store.getState();
+            expect(newState.posts).toBe(expectedState);
+        });
+        
+    });
+
+});
+```
+---
