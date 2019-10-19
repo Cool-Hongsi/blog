@@ -18,6 +18,7 @@ This application is created to receive the pictures from Pixabay API and make it
 - If you click the save button, the the picture will be stored into My Collection.
 - If you click the My Collection button, then you are able to see the pictures that you saved.
 - If you would like to search pictures more, then click the 'Go To Search' button again.
+
 ---
 
 [Pixabay-API](https://github.com/Cool-Hongsi/Pixabay-API)
